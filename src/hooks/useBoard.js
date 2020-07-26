@@ -1,67 +1,58 @@
 import { useState } from 'react';
-import { createBoard, addRandomNumber} from '../gameHelper';
-const cloneDeep = require('lodash/cloneDeep');
+import { createBoard} from '../gameHelper';
 export const useBoard = () => {
   const [board, setBoard] = useState(createBoard());
-  let win = false;
 
-  const moveBoard = (direction) => {
-    console.log(direction);
-    let prevBoard = cloneDeep(board);
-    console.log(prevBoard)
-    for (let i = 0; i < direction; ++i) {
-      prevBoard = rotate(prevBoard);
-    }
-    let newBoard = updateBoard(prevBoard);
-    for (let i = direction; i < 4; ++i) {
-      newBoard = rotate(newBoard);
-    }
-    setBoard(newBoard)
-    if(win){
-      alert('You Won!!')
-    }
-  }
+  // const moveBoard = (direction) => {
+  //   let prevBoard = cloneDeep(board);
+  //   for (let i = 0; i < direction; ++i) {
+  //     prevBoard = rotate(prevBoard);
+  //   }
+  //   let newBoard = updateBoard(prevBoard);
+  //   for (let i = direction; i < 4; ++i) {
+  //     newBoard = rotate(newBoard);
+  //   }
+  //   setBoard(newBoard)
+  //   if(win){
+  //     alert('You Won!!')
+  //   }
+  // }
   
-  const updateBoard = (newBoard) => {
+  const updateBoard = (prevBoard) => {
     const resultBoard = [];
     for(let i = 0 ; i < 4 ; i++){
-      let row = newBoard[i].filter(val => val !== 0);
+      let row = prevBoard[i].filter(val => val !== 0);
       let firstBlock = 0;
       let secondBlock = 1;
-      if(row.length > 1){
-        while(firstBlock < row.length-1){
-          console.log('time',firstBlock)
-          if(row[secondBlock]){
-            if(row[firstBlock] === row[secondBlock]){
-              row[firstBlock] += row[secondBlock];
-              row[secondBlock] = 0
-              if(row[firstBlock] === 2048){
-                console.log(row[firstBlock])
-                win = true;
-              }
+      while(firstBlock < row.length-1){
+        if(row[secondBlock]){
+          if(row[firstBlock] === row[secondBlock]){
+            row[firstBlock] += row[secondBlock];
+            row[secondBlock] = 0
+            if(row[firstBlock] === 2048){
+              console.log(row[firstBlock])
             }
-            firstBlock++;
-            secondBlock = firstBlock + 1;
           }
+          firstBlock++;
+          secondBlock = firstBlock + 1;
         }
-      }
+      }   
       for(let j = row.length; j < 4; j++){
         row.push(0)
       }
       resultBoard.push(row)
     }
-    addRandomNumber(resultBoard)
     return resultBoard
   }
 
-  function rotate(matrix) {
-    let result = [];
-    for(let i = 0; i < matrix[0].length; i++) {
-        let row = matrix.map(e => e[i]).reverse();
-        result.push(row);
-    }
-    return result;
-};
+//   function rotate(matrix) {
+//     let rotatedMatrix = [];
+//     for(let i = 0; i < matrix[0].length; i++) {
+//         let row = matrix.map(e => e[i]).reverse();
+//         rotatedMatrix.push(row);
+//     }
+//     return rotatedMatrix;
+// };
 
 
     
@@ -69,5 +60,5 @@ export const useBoard = () => {
 
 
 
-  return [board, setBoard, moveBoard];
+  return [board, setBoard, updateBoard];
 };

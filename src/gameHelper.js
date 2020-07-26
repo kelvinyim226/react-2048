@@ -11,54 +11,52 @@ Array.from(Array(4), () =>
   )
 
 export const initiateBoard = () => {
-  const startboard = (createBoard())
-  addNumber(startboard)
-  addNumber(startboard)
-  return startboard
+  const startingBoard = (createBoard())
+  addNumber(startingBoard)
+  addNumber(startingBoard)
+  return startingBoard
    
- 
 }
 
-export const addNumber = (prevBoard) => {
+export const addNumber = (board) => {
   let added = false;
   let attempts = 0;
   while(!added){
     let firstRan = random(Board_WIDTH);
     let secRan = random(Board_WIDTH);
-  if(prevBoard[firstRan][secRan] === 0){
-      prevBoard[firstRan][secRan] = 2
-      added = true;
-    }
-    attempts++;
-    if (attempts > 50) {
-      alert("game over");
-      break;
-    }
-
-  }
-  return prevBoard
-}
-
-export const addRandomNumber = (prevBoard) => {
-  let added = false;
-  let attempts = 0;
-  while(!added){
-    let firstRan = random(Board_WIDTH);
-    let secRan = random(Board_WIDTH);
-  if(prevBoard[firstRan][secRan] === 0){
-      if(firstRan > random(Board_WIDTH)){
-      prevBoard[firstRan][secRan] = 2
-      }else{
-        prevBoard[firstRan][secRan] = 4
+    if(board[firstRan][secRan] === 0){
+        board[firstRan][secRan] = 2
+        added = true;
       }
-      added = true;
-    }
-    attempts++;
+      attempts++;
     if (attempts > 50) {
-      alert("game over");
-      break;
-    }
-
+        alert("game over");
+        break;
+      }
   }
-  return prevBoard
+  return board
 }
+
+// export const addRandomNumber = (board) => {
+//   let added = false;
+//   let attempts = 0;
+//   while(!added){
+//     let firstRan = random(Board_WIDTH);
+//     let secRan = random(Board_WIDTH);
+//     if(board[firstRan][secRan] === 0){
+//       if(firstRan > random(Board_WIDTH)){
+//       board[firstRan][secRan] = 2
+//       }else{
+//         board[firstRan][secRan] = 4
+//       }
+//       added = true;
+//     }
+//     attempts++;
+//     if (attempts > 50) {
+//       alert("game over");
+//       break;
+//     }
+
+//   }
+//   return board
+// }

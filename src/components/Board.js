@@ -5,7 +5,6 @@ import Cell from './Cell';
 
 const Board = ({ Board }) => (
   <StyledBoard width={Board.length} height={Board.length}>
-      {console.log(Board)}
     {Board.map(row => row.map((cell, x) => <Cell key={x} value={cell} />))}
   </StyledBoard>
 );
