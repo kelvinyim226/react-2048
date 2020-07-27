@@ -34,7 +34,6 @@ const Main = () => {
       }
       attempts++;
       if (attempts > 100) {
-        alert("game over");
         setGameOver(true);
         break;
       }
@@ -81,7 +80,6 @@ const Main = () => {
         }
       }  
     }
-    alert('game over')
     setGameOver(true)
 
   }
@@ -136,11 +134,8 @@ const Main = () => {
 
   return(
       <StyledWrapper role="button" tabIndex="0" onKeyDown={e => move(e)}>
-          <Board Board={board} />
+          <Board Board={board} gameOver={gameOver} />
           <aside>
-            {gameOver?
-            <div>you lose</div>
-          :<div/>}
         <StartButton callback={startGame} />
       </aside>
       </StyledWrapper>

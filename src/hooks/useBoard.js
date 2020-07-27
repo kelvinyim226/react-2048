@@ -2,21 +2,6 @@ import { useState } from 'react';
 import { createBoard} from '../gameHelper';
 export const useBoard = () => {
   const [board, setBoard] = useState(createBoard());
-
-  // const moveBoard = (direction) => {
-  //   let prevBoard = cloneDeep(board);
-  //   for (let i = 0; i < direction; ++i) {
-  //     prevBoard = rotate(prevBoard);
-  //   }
-  //   let newBoard = updateBoard(prevBoard);
-  //   for (let i = direction; i < 4; ++i) {
-  //     newBoard = rotate(newBoard);
-  //   }
-  //   setBoard(newBoard)
-  //   if(win){
-  //     alert('You Won!!')
-  //   }
-  // }
   
   const updateBoard = (prevBoard) => {
     const resultBoard = [];
@@ -44,21 +29,6 @@ export const useBoard = () => {
     }
     return resultBoard
   }
-
-//   function rotate(matrix) {
-//     let rotatedMatrix = [];
-//     for(let i = 0; i < matrix[0].length; i++) {
-//         let row = matrix.map(e => e[i]).reverse();
-//         rotatedMatrix.push(row);
-//     }
-//     return rotatedMatrix;
-// };
-
-
-    
-
-
-
 
   return [board, setBoard, updateBoard];
 };
