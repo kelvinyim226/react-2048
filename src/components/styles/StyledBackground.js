@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const StyledWrapper = styled.div`
   width: 100vw;
@@ -8,7 +7,7 @@ export const StyledWrapper = styled.div`
   overflow: hidden;
   display: flex;
 
-  aside{
+  aside {
     display: grid;
     margin-bottom: auto;
     margin-top: auto;
