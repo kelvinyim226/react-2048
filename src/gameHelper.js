@@ -21,7 +21,7 @@ export const addNumber = (board) => {
     let firstRan = random(Board_WIDTH);
     let secRan = random(Board_WIDTH);
     if (board[firstRan][secRan] === 0) {
-      board[firstRan][secRan] = 512;
+      board[firstRan][secRan] = 2;
       added = true;
     }
     attempts++;
