@@ -14,6 +14,7 @@ export const useBoard = () => {
           if (row[firstBlock] === row[secondBlock]) {
             row[firstBlock] += row[secondBlock];
             row[secondBlock] = 0;
+            row = row.filter((val) => val !== 0);
             if (row[firstBlock] === 2048) {
               setWon(true);
             }
